@@ -1,1 +1,1 @@
-export {GetAllPosts , GetAllTagsPosts} from "./posts/posts";
+export {getAllPosts , getAllTagsPosts} from "./posts/posts";

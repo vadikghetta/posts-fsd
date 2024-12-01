@@ -2,16 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import styles from "./PostsPage.module.css";
 
 import { ArticlePreview } from "../ArticlePreview/ArticlePreview";
-import { GetAllPosts, GetAllTagsPosts } from "../../../../shared/api";
+import { getAllPosts, getAllTagsPosts } from "../../../../shared/api";
+import { useState } from "react";
 
 export function PostsPage() {
+    const [tag, setTag] = useState<string | null>(null);
     const posts = useQuery({
-        queryKey: ["posts"],
-        queryFn: GetAllPosts
+        queryKey: ["posts", tag],
+        queryFn: ({ queryKey }) => getAllPosts(queryKey[1])
     })
     const tags = useQuery({
         queryKey: ["tags"],
-        queryFn: GetAllTagsPosts
+        queryFn: getAllTagsPosts
     })
 
     if (posts.isLoading) {
@@ -40,6 +42,9 @@ export function PostsPage() {
                             name="tag"
                             value={tag}
                             className="tag-pill tag-default"
+                            onClick={() => {
+                                setTag(tag)
+                            }}
                         >
                             {tag}
                         </button>

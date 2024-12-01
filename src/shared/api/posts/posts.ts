@@ -2,9 +2,9 @@ import { backendBaseUrl } from "../../config/backend";
 import { ROUTES_TYPE } from "../../types/general.types";
 import { IPostsRoot } from "../../types/posts.types";
 
-export async function GetAllPosts() : Promise<IPostsRoot | null> {
+export async function getAllPosts(tag?: string | null) : Promise<IPostsRoot | null> {
     try {
-        const request = await fetch(`${backendBaseUrl}/${ROUTES_TYPE.POSTS}`);
+        const request = await fetch(`${backendBaseUrl}/${ROUTES_TYPE.POSTS}${tag ? `/tag/${tag}` : ""}`);
         if(!request.ok) {
             return null
         }
@@ -15,7 +15,7 @@ export async function GetAllPosts() : Promise<IPostsRoot | null> {
         return null
     }
 }
-export async function GetAllTagsPosts() : Promise<string[] | null> {
+export async function getAllTagsPosts() : Promise<string[] | null> {
     try {
         const request = await fetch(`${backendBaseUrl}/${ROUTES_TYPE.POSTS}/${ROUTES_TYPE.TAGS_LIST}`);
         if(!request.ok) {
