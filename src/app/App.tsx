@@ -1,10 +1,16 @@
-import { BrowserRouter, Routes } from "react-router"
+import { BrowserRouter, Route, Routes } from "react-router"
+import { Layout } from "../shared/ui/layouts"
+import { PostsPage } from "../pages/posts"
 
 export const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                {/* <Route index element={<Home />} />
+                <Route element={<Layout />} >
+                    <Route index element={<PostsPage />} />
+                </Route>
+                {/* 
+                 <Route index element={<Home />} />
                 <Route path="about" element={<About />} />
 
                 <Route element={<AuthLayout />}>
@@ -16,7 +22,7 @@ export const App = () => {
                     <Route index element={<ConcertsHome />} />
                     <Route path=":city" element={<City />} />
                     <Route path="trending" element={<Trending />} />
-                </Route> */}
+                </Route>  */}
             </Routes>
         </BrowserRouter>
     )
