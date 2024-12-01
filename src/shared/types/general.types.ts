@@ -1,6 +1,7 @@
 
 export enum ROUTES_TYPE  {
-    POSTS = "posts"
+    POSTS = "posts",
+    TAGS_LIST = "tag-list"
 }
 
 
